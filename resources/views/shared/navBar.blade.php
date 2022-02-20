@@ -1,0 +1,1 @@
+@livewire('shared.nav-bar')

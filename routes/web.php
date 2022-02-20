@@ -13,6 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::redirect('/', '/home', 301);
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('home', [\App\Http\Controllers\UserController::class, 'home'])->name('user.home');
+    Route::get('my-profile', [\App\Http\Controllers\UserController::class, 'myProfile'] )->name('user.my-profile');
+    Route::get('profile/{slug}', [\App\Http\Controllers\UserController::class, 'profile'] )->name('user.profile');
+    Route::get('settings', [App\Http\Controllers\SettingsController::class, 'companySettings'])->name('settings');
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+    Route::get('users-list', [\App\Http\Controllers\UserController::class, 'userList'])->name('user.users-list');
+
+    Route::get('promotion',[\App\Http\Controllers\UserController::class, 'promotion'])->name('user.promotion');
+
+    Route::get('trainers', [\App\Http\Controllers\Training::class, 'trainers'])->name('trainers');
+    Route::get('trainings', [\App\Http\Controllers\Training::class, 'index'])->name('training.index');
+    Route::get('training-type', [\App\Http\Controllers\Training::class, 'trainingType'])->name('training-type');
+    Route::get('resignation', [\App\Http\Controllers\ResignationController::class, 'index'] )->name('resignation.index');
+    Route::get('promotion', [\App\Http\Controllers\PromotionController::class, 'index'] )->name('promotion.index');
+    Route::get('departement', [\App\Http\Controllers\DepartementController::class, 'index'] )->name('departement.index');
+
+    Route::get('holidays', [\App\Http\Controllers\HolidayController::class, 'index'] )->name('holiday.index');
+    Route::get('leaves', [\App\Http\Controllers\LeaveController::class, 'index'] )->name('leave.index');
+
+
+
 });
+
