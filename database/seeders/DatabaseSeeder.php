@@ -19,8 +19,10 @@ class DatabaseSeeder extends Seeder
         
         $this->call(CountryTableSeeder::class);
         $this->call(StateTableSeeder::class);
+        $this->call(DepartmentSeeder::class);
         $this->call(CityTableSeeder::class);
-        $this->call(DepartementSeeder::class);
+       
+        $this->call(LeaveSeeder::class);
         User::factory(25)->create();
     }
 }

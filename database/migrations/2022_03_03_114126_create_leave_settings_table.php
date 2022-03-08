@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDepartementsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateDepartementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departements', function (Blueprint $table) {
+        Schema::create('leave_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('leave_id');
+            $table->integer('days');
+            $table->boolean('carry_forward');
+            $table->boolean('earned_leave');
+            $table->longText('custom_policy')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateDepartementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departements');
+        Schema::dropIfExists('leave_settings');
     }
-}
+};

@@ -58,7 +58,10 @@
         <!-- /Sidebar -->
         <!-- Main content -->
         <div class="page-wrapper">
+            <div class="content container-fluid">
             @yield('content')
+
+            </div>
            
         <!-- /Main content -->
         </div>

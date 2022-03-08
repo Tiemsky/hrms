@@ -34,9 +34,9 @@
                             @foreach ($holidays as $holiday)
                             <tr class="holiday-completed">
                                 <td>1</td>
-                                <td>New Year</td>
-                                <td>1 Jan 2019</td>
-                                <td>Sunday</td>
+                                <td>{{ $holiday->name }} </td>
+                                <td>{{ $holiday->date }} </td>
+                                <td>{{ date('l',strtotime($holiday->date)) }} </td>
                                 <td></td>
                             </tr>
                             @endforeach

@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <table class="table table-striped custom-table mb-0 datatable">
+                            <table class="table table-striped custom-table mb-0 ">
                                 <thead>
                                     <tr>
                                         <th style="width: 30px;">#</th>
@@ -31,10 +31,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($departements as $departement)
+                                    @foreach ($departments as $department)
                                         <tr>
                                             <td>{{ ++$loop->index }} </td>
-                                            <td>{{ $departement->name }} </td>
+                                            <td>{{ $department->name }} </td>
                                             <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -47,7 +47,7 @@
                                                         type="button"
                                                         data-toggle="modal" 
                                                         data-target="#edit_department"
-                                                        wire:click.prevent="getInfo({{ $departement->id }})">
+                                                        wire:click.prevent="getInfo({{ $department->id }})">
                                                         <i class="fa fa-pencil m-r-5"></i>
                                                          Edit
                                                     </a>
@@ -55,7 +55,7 @@
                                                         href="#" 
                                                         data-toggle="modal" 
                                                         data-target="#delete_department"
-                                                        wire:click="getInfo({{ $departement->id }})">
+                                                        wire:click="getInfo({{ $department->id }})">
                                                         <i class="fa fa-trash-o m-r-5"></i> 
                                                         Delete
                                                     </a>
@@ -70,8 +70,11 @@
                             </table>
                         </div>
                     </div>
+                  
                 </div>
+               
             </div>
+            {{ $departments->links() }}
             <!-- /Page Content -->
             
             <!-- Add Department Modal -->
@@ -161,11 +164,10 @@
             
 </div>
 <script>
-    window.addEventListener('departement', event => {
+    window.addEventListener('department', event => {
     $('#add_department').modal('hide')
-    $('#edit_education_info').modal('hide')
-    $('#create_experience_info').modal('hide')
-    $('#edit_experience_info').modal('hide')
+    $('#edit_department').modal('hide')
+    $('#delete_department').modal('hide')
     
 
     

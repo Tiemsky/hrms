@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DepartementSeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class DepartementSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('departements')->delete();
+        DB::table('departments')->delete();
         $departements = array(
             array('id' => 1,'name' => "Marketing & Proposals Department"),
             array('id' => 2,'name' => "Sales Department"),
@@ -36,6 +36,6 @@ class DepartementSeeder extends Seeder
             array('id' => 17,'name' => "Security Department"),
             array('id' => 18,'name' => "Administration Department"),
         );
-        DB::table('departements')->insert($departements);
+        DB::table('departments')->insert($departements);
     }
 }

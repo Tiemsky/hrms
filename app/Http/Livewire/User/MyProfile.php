@@ -372,7 +372,7 @@ class MyProfile extends Component
 
     public function render()
     {
-        $this->dispatchBrowserEvent('name-updated');
+        
         $user = User::with(['experiences', 'educations','departement','emergencyContact'])
                     ->where('id', Auth::user()->id)
                     ->first() ;

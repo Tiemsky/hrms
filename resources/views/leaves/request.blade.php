@@ -1,4 +1,4 @@
 @extends('layouts.app')
     @section('content')
-        @livewire('departement.departement')
+        @livewire('leave.request')
     @endsection

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('isAdmin')->default(0);
             $table->string('password');
             $table->string('date_of_birth')->nullable();
+            $table->string('joindate');
             $table->string('slug');
             $table->string('document_number')->nullable();
             $table->string('expiration_date')->nullable();
@@ -31,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('religion')->nullable();
             $table->string('matrial_status')->nullable();
             $table->string('number_of_children')->nullable();
-            $table->integer('departement_id')->nullable();
+            $table->integer('department_id')->nullable();
             $table->string('designation')->nullable();
             $table->string('status')->default('active');
             $table->string('avatar')->nullable();

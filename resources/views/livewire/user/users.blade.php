@@ -1,7 +1,7 @@
-<div class="content container-fluid">
+<div>
   
     		<!-- Page Content -->
-            <div class="">
+            <div>
 				
                 <!-- Page Header -->
                 <div class="page-header">
@@ -28,7 +28,8 @@
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
-                            <input type="text" class="form-control floating">
+                            <input type="text" 
+                            class="form-control floating">
                             <label class="focus-label">Employee ID</label>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3"> 
                         <div class="form-group form-focus select-focus">
-                            <select class="select floating"> 
+                            <select class="select floating form-control"> 
                                 <option>Select Designation</option>
                                 <option>Web Developer</option>
                                 <option>Web Designer</option>
@@ -110,6 +111,9 @@
                                 </a>
                             </h4>
                             <div class="small text-muted">Web Designer</div>
+                            @if ($user->status == 'deleted')
+                                <div class="small text-mutted"><p class="text-danger">No Longer Working</p> </div>
+                            @endif
                         </div>
                     </div>
                   @endforeach
@@ -120,7 +124,7 @@
             <!-- /Page Content -->
             
             <!-- Add Employee Modal -->
-            <div id="add_employee" class="modal custom-modal fade" role="dialog">
+            <div wire:ignore.self id="add_employee" class="modal custom-modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -135,20 +139,39 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" 
+                                                    type="text"
+                                                    wire:model.defer='first_name'>
+
+                                            @error('first_name')
+                                            <span class="invalid-feedback">{{ $message }} </span>
+                                                
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-form-label">Last Name</label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" 
+                                                    type="text"
+                                                    wire:model.defer='last_name'>
+                                                    @error('last_name')
+                                                    <span class="invalid-feedback">{{ $message }} </span>
+                                                        
+                                                    @enderror
                                         </div>
                                     </div>
  
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email">
+                                            <input class="form-control" 
+                                                    type="email"
+                                                    wire:model.defer='email'>
+                                                    @error('email')
+                                                    <span class="invalid-feedback">{{ $message }} </span>
+                                                        
+                                                    @enderror
                                         </div>
                                     </div>
                             
@@ -157,32 +180,71 @@
                                     <div class="col-sm-6">  
                                         <div class="form-group">
                                             <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-                                            <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+                                            <div class="cal-icon">
+                                                <input class="form-control date" 
+                                                        type="text"
+                                                        wire:model.defer='joindate'>
+
+                                                @error('joindate')
+                                                <span class="invalid-feedback">{{ $message }} </span>
+                                                    
+                                                @enderror                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="col-form-label">Phone </label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" 
+                                                    type="text"
+                                                    wire:model.defer='phone'>
+
+                                                    @error('phone')
+                                                    <span class="invalid-feedback">{{ $message }} </span>
+                                                        
+                                                    @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender <span class="text-danger">*</span></label>
+                                            <select class="select form-control" wire:model.defer="gender">
+                                                <option value=""> Select gender</option>
+                                                <option value="male"> Male</option>
+                                                <option value="female"> Female</option>
+
+                                             
+                                            </select>
+                                            @error('gender')
+                                            <span class="invalid-feedback">{{ $message }} </span>
+                                                
+                                            @enderror
                                         </div>
                                     </div>
        
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Department <span class="text-danger">*</span></label>
-                                            <select class="select">
-                                                <option>Select Department</option>
-                                                <option>Web Development</option>
-                                                <option>IT Management</option>
-                                                <option>Marketing</option>
+                                            <select class="select form-control" wire:model.defer="department_id">
+                                                <option value=""> Select Department</option>
+
+                                                @foreach ($departments as $department)
+                                                    <option value="{{ $department->id }} ">{{ $department->name }} </option>
+                                                @endforeach
+                                                
+                                             
                                             </select>
+                                            @error('department_id')
+                                            <span class="invalid-feedback">{{ $message }} </span>
+                                                
+                                            @enderror
                                         </div>
                                     </div>
                             
                                 </div>
                               
                                 <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn">Submit</button>
+                                    <button class="btn btn-primary" wire:click.prevent='registerUser'>Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -212,7 +274,7 @@
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn" wire:click.prevent='delete'>Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -224,9 +286,32 @@
 
             
 </div>
+@section('DateScript')
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script>
+        // var picker = new Pikaday({
+        //     field: document.getElementById('date'),
+        //     format: 'D MMM YYYY',
+        //     onSelect: function() {
+        //         console.log(this.getMoment().format('Do MMMM YYYY'));
+        //     }
+            
+        // });
+
+
+        var picker = [];
+        $('.date').each(function(idx) {
+            picker[idx] = new Pikaday({ field: $(this)[0] });
+        });
+        </script>
+ @endsection       
 <script>
         window.addEventListener('deletedSucessfully', event => {
         $('#delete_employee').modal('hide')
     })
+    window.addEventListener('user-created', event => {
+        $('#add_employee').modal('hide')
+    })
+
 
 </script>

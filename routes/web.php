@@ -30,10 +30,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('training-type', [\App\Http\Controllers\Training::class, 'trainingType'])->name('training-type');
     Route::get('resignation', [\App\Http\Controllers\ResignationController::class, 'index'] )->name('resignation.index');
     Route::get('promotion', [\App\Http\Controllers\PromotionController::class, 'index'] )->name('promotion.index');
-    Route::get('departement', [\App\Http\Controllers\DepartementController::class, 'index'] )->name('departement.index');
+    Route::get('department', [\App\Http\Controllers\DepartmentController::class, 'index'] )->name('department.index');
 
     Route::get('holidays', [\App\Http\Controllers\HolidayController::class, 'index'] )->name('holiday.index');
+
     Route::get('leaves', [\App\Http\Controllers\LeaveController::class, 'index'] )->name('leave.index');
+    Route::get('leave/create', [\App\Http\Controllers\LeaveController::class, 'create'] )->name('leave.create');
+    Route::get('leave/request', [\App\Http\Controllers\LeaveController::class, 'request'] )->name('leave.request');
+    Route::get('leaves/settings', [\App\Http\Controllers\LeaveController::class, 'settings'] )->name('leave.settings');
+    Route::get('leaves/show-requests/{user_slug}/{leave_slug}', [\App\Http\Controllers\LeaveController::class, 'show'] )->name('leave.show-request');
 
 
 

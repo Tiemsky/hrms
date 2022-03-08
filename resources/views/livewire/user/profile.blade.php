@@ -42,7 +42,10 @@
                                     <div class="col-md-5">
                                         <div class="profile-info-left">
                                             <h3 class="user-name m-t-0 mb-0">{{ $user->first_name }} {{ $user->last_name }} </h3>
-                                            <h6 class="text-muted">{{ $user->departement->name }} </h6>
+                                            {{-- <h6 class="text-muted">{{ $user->department->name }} </h6> 
+                                            --}}
+                                            <h6 class="text-muted">{{ $user->department->name }} </h6>
+
                                             <small class="text-muted">Web Designer</small>
                                             <div class="staff-id">Employee ID : {{ $user->employee_id }} </div>
                                             <div class="small doj text-muted">Date of Join : {{ $user->created_at }} </div>

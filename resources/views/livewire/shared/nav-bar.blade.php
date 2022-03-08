@@ -60,24 +60,8 @@
         <!-- /Search -->
     
         <!-- Flag -->
-        <li class="nav-item dropdown has-arrow flag-nav">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                <img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/us.png" alt="" height="16"> English
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/fr.png" alt="" height="16"> French
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/es.png" alt="" height="16"> Spanish
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/de.png" alt="" height="16"> German
-                </a>
-            </div>
+        <li class="nav-item dropdown ">
+         <a type="button" class="nav-link" id="clock">Counter Time</a>
         </li>
         <!-- /Flag -->
     
@@ -309,3 +293,36 @@
     <!-- /Mobile Menu -->
     
 </div>
+
+<script>
+     
+    setInterval(displayclock, 500);
+    function displayclock() {
+        var time = new Date();
+        var hrs = time.getHours();
+        var min = time.getMinutes();
+        var sec = time.getSeconds();
+        var en = 'AM';
+        if (hrs > 12) {
+            en = 'PM';
+        }
+        if (hrs > 12) {
+            hrs = hrs - 12;
+        }
+        if (hrs == 0) {
+            hrs = 12;
+        }
+        if (hrs < 10) {
+            hrs = '0' + hrs;
+        }
+        if (min < 10) {
+            min = '0' + min;
+        }
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+        document.getElementById("clock").innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
+    }
+
+        
+</script>

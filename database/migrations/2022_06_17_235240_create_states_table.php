@@ -16,7 +16,7 @@ class CreateStatesTable extends Migration
         Schema::create('states', function (Blueprint $table) {
             $table->id();
             $table->foreignId('country_id')
-                    ->constrained('countries')
+                    ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->string('name');
@@ -33,3 +33,4 @@ class CreateStatesTable extends Migration
         Schema::dropIfExists('states');
     }
 }
+

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Departement;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
@@ -35,11 +35,12 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'gender'=>$gender,
+            'joindate'=> now(),
             'isAdmin'=>rand(0,2),
             'phone'=>$this->faker->phoneNumber,
             'status'=>$status,
             'slug'=>Str::slug($this->faker->name),
-            'departement_id'=> Departement::all()->random()->id,
+            'department_id'=> Department::all()->random()->id,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'address' => $this->faker->address,

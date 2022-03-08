@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Leave extends Model
+class LeaveSettings extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function setting()
-    {
-        return $this->hasOne(LeaveSettings::class);
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Livewire\Component;
@@ -10,7 +11,7 @@ class Profile extends Component
 {
     public $slug;
     public function render()
-    {   $user = User::with(['educations','experiences'])
+    {   $user = User::with(['department','educations','experiences'])
                         ->where('slug', $this->slug)
                         ->first();
 
