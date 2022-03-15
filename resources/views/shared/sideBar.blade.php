@@ -68,9 +68,9 @@
                 <li class="submenu">
                     <a href="#" class="noti-dot"><i class="la la-user"></i> <span> Leaves</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="{{ route('leave.index') }} ">Leave</a></li>
+                        <li><a href="{{ route('leave.index') }} ">Requested Leave</a></li>
                         <li><a href="{{ route('leave.create') }} ">Manage Leaves</a></li>
-                    <li><a href="{{ route('leave.request') }} ">Request For Leave </a></li>
+                        <li><a href="{{ route('leave.send-request') }} ">Request For Leave </a></li>
                         <li><a href="{{ route('leave.settings') }} ">Leave Settings</a></li>
                         {{-- <li><a href="{{ route('leave.show-request,[test, gem]') }} ">Show All Requests</a></li> --}}
                         

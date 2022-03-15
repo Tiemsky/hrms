@@ -7,7 +7,7 @@ use App\Models\RequestedLeave;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Request extends Component
+class SendRequest extends Component
 {
     public $leave_id, $leave_from, $leave_to, $number_of_day, $remaining_day, $leave_reason;
     public $startDay, $endDay, $leave_max_day;
@@ -57,6 +57,6 @@ class Request extends Component
     {
         $leaves = Leave::with(['setting'])->get();
         $myLeaves = RequestedLeave::with('leave')->where('user_id', Auth::user()->id)->get();
-        return view('livewire.leave.request', compact('leaves','myLeaves'));
+        return view('livewire.leave.send-request', compact('leaves','myLeaves'));
     }
 }

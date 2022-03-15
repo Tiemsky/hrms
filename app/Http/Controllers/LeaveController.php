@@ -25,9 +25,9 @@ public function show($user_slug, $leave_slug){
     return view('leaves.show-request', compact('user','leave'));
 }
 
-public function request()
+public function Sendrequest()
 {
-    return view('leaves.request');
+    return view('leaves.send-request');
 }
 
 public function settings()

@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('leaves', [\App\Http\Controllers\LeaveController::class, 'index'] )->name('leave.index');
     Route::get('leave/create', [\App\Http\Controllers\LeaveController::class, 'create'] )->name('leave.create');
-    Route::get('leave/request', [\App\Http\Controllers\LeaveController::class, 'request'] )->name('leave.request');
+    Route::get('leave/send-request', [\App\Http\Controllers\LeaveController::class, 'Sendrequest'] )->name('leave.send-request');
     Route::get('leaves/settings', [\App\Http\Controllers\LeaveController::class, 'settings'] )->name('leave.settings');
     Route::get('leaves/show-requests/{user_slug}/{leave_slug}', [\App\Http\Controllers\LeaveController::class, 'show'] )->name('leave.show-request');
 
