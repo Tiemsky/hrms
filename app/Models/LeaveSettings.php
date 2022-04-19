@@ -9,4 +9,7 @@ class LeaveSettings extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
+
 }

@@ -126,7 +126,7 @@
                                     <td>{{ $myLeave->leave_from }} </td>
                                     <td>{{ $myLeave->leave_to }} </td>
                                     <td>{{ $myLeave->number_of_day }} </td>
-                                    <td>{{ $myLeave->leave_reason }} </td>
+                                    <td>{{ substr_replace($myLeave->leave_reason,' ... ',10) }} </td>
                                     <td class="text-center">
                                         status
                                     </td>

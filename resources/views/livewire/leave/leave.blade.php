@@ -18,7 +18,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Leave Statistics -->
         <div class="row">
             <div class="col-md-3">
@@ -47,18 +47,18 @@
             </div>
         </div>
         <!-- /Leave Statistics -->
-        
+
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
                     <input type="text" class="form-control floating">
                     <label class="focus-label">Employee Name</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
+                    <select class="select floating">
                         <option> -- Select -- </option>
                         <option>Casual Leave</option>
                         <option>Medical Leave</option>
@@ -67,9 +67,9 @@
                     <label class="focus-label">Leave Type</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12"> 
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
+                    <select class="select floating">
                         <option> -- Select -- </option>
                         <option> Pending </option>
                         <option> Approved </option>
@@ -78,7 +78,7 @@
                     <label class="focus-label">Leave Status</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
                         <input class="form-control floating datetimepicker" type="text">
@@ -86,7 +86,7 @@
                     <label class="focus-label">From</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
                         <input class="form-control floating datetimepicker" type="text">
@@ -94,12 +94,12 @@
                     <label class="focus-label">To</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
-                <a href="#" class="btn btn-success btn-block"> Search </a>  
-            </div>     
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                <a href="#" class="btn btn-success btn-block"> Search </a>
+            </div>
         </div>
         <!-- /Search Filter -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -118,19 +118,19 @@
                         </thead>
                         <tbody>
                           @foreach ($requestedLeaves as $requestedLeave)
-                              
+
                             <tr>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                        <a href="#">Richard Miles <span>Web Developer</span></a>
+                                        <a  class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
+                                        <a href="{{ route('user.profile', [$requestedLeave->user->slug]) }} ">{{$requestedLeave->user->last_name}}  <span>{{$requestedLeave->user->department->name}}</span></a>
                                     </h2>
                                 </td>
-                                <td>Casual Leave</td>
-                                <td>8 Mar 2019</td>
-                                <td>9 Mar 2019</td>
-                                <td>2 days</td>
-                                <td>Going to Hospital</td>
+                                <td>{{$requestedLeave->leave->name}} </td>
+                                <td>{{$requestedLeave->leave_from}} </td>
+                                <td>{{$requestedLeave->leave_to}}  </td>
+                                <td>{{$requestedLeave->number_of_day}} </td>
+                                <td>{{$requestedLeave->leave_reason}}  </td>
                                 <td class="text-center">
                                     <div class="dropdown action-label">
                                         <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -155,7 +155,7 @@
                                 </td>
                             </tr>
                           @endforeach
-                        
+
                         </tbody>
                     </table>
                 </div>
@@ -163,162 +163,6 @@
         </div>
     </div>
     <!-- /Page Content -->
-    
-    <!-- Add Leave Modal -->
-    <div id="add_leave" class="modal custom-modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Leave</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Leave Type <span class="text-danger">*</span></label>
-                            <select class="select">
-                                <option>Select Leave Type</option>
-                                <option>Casual Leave 12 Days</option>
-                                <option>Medical Leave</option>
-                                <option>Loss of Pay</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>From <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>To <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Number of days <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly type="text">
-                        </div>
-                        <div class="form-group">
-                            <label>Remaining Leaves <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly value="12" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label>Leave Reason <span class="text-danger">*</span></label>
-                            <textarea rows="4" class="form-control"></textarea>
-                        </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Add Leave Modal -->
-    
-    <!-- Edit Leave Modal -->
-    <div id="edit_leave" class="modal custom-modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Leave</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Leave Type <span class="text-danger">*</span></label>
-                            <select class="select">
-                                <option>Select Leave Type</option>
-                                <option>Casual Leave 12 Days</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>From <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" value="01-01-2019" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>To <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" value="01-01-2019" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Number of days <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly type="text" value="2">
-                        </div>
-                        <div class="form-group">
-                            <label>Remaining Leaves <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly value="12" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label>Leave Reason <span class="text-danger">*</span></label>
-                            <textarea rows="4" class="form-control">Going to hospital</textarea>
-                        </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Edit Leave Modal -->
 
-    <!-- Approve Leave Modal -->
-    <div class="modal custom-modal fade" id="approve_leave" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-header">
-                        <h3>Leave Approve</h3>
-                        <p>Are you sure want to approve for this leave?</p>
-                    </div>
-                    <div class="modal-btn delete-action">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="javascript:void(0);" class="btn btn-primary continue-btn">Approve</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Decline</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Approve Leave Modal -->
-    
-    <!-- Delete Leave Modal -->
-    <div class="modal custom-modal fade" id="delete_approve" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-header">
-                        <h3>Delete Leave</h3>
-                        <p>Are you sure want to delete this leave?</p>
-                    </div>
-                    <div class="modal-btn delete-action">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Delete Leave Modal -->
+
 </div>

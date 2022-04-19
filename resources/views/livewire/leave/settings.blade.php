@@ -1,4 +1,5 @@
-<!-- Page Wrapper -->
+<div>
+    <!-- Page Wrapper -->
 <div class="content container-fluid">
     
     <!-- Page Content -->
@@ -28,74 +29,57 @@
                 <!-- Leaves -->
              @forelse ($leaves as $leave)
                     <!-- Custom Create Leave -->
+
+     
                 <div class="card leave-box mb-0" id="leave_custom01">
                     <div class="card-body">
                         <div class="h3 card-title with-switch">
                             {{ Str::upper($leave->name) }} 											
-                            <div class="onoffswitch">
-                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch_custom01" wire:click='test'>
-                                <label class="onoffswitch-label" for="switch_custom01">
-                                    <span class="onoffswitch-inner"></span>
-                                    <span class="onoffswitch-switch"></span>
-                                </label>
+                            <div class="">
+                                <button class="btn btn-info leave-delete-btn" type="button" wire:click.prevent='showLeaveSetting("{{ $leave->id }} " )'>Show|Edit</button>
+                                <button class="btn btn-danger leave-delete-btn" type="button">Delete</button>
+
                             </div>
-                            <button class="btn btn-danger leave-delete-btn" type="button">Delete</button>
 
                         </div>
-                        <div class="leave-item">
-                         
-                            
-                            <!-- Annual Days Leave -->
-                            <div class="leave-row">
-                                <div class="leave-left">
-                                    <div class="input-box">
-                                        <div class="form-group">
-                                            <label>Days</label>
-                                            <input type="text" 
-                                                    class="form-control"
-                                                    wire:model.defer='days'>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                            </div>
-                            <!-- /Annual Days Leave -->
-                            
-                        
-                            <!-- /Carry Forward -->
+                   @if ($showSettings && $leave_id == $leave->id )
 
-                                  <!-- Earned Leave -->
-                                  <div class="leave-row">
-                                    <div class="leave-left">
-                                        <div class="input-box">
-                                            <label class="d-block">Carry forward</label>
-                                            <div class="leave-inline-form">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="carry_forward" id="carry_forward1" wire:model.defer="carry_forward" value="0" >
-                                                    <label class="form-check-label" for="inlineRadio1">No</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="carry_forward" id="carry_forward2" wire:model.defer="carry_forward" value="1">
-                                                    <label class="form-check-label" for="inlineRadio2">Yes</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                   <div>
+                    <div class="leave-item">
+                     
+                
+                        <!-- Annual Days Leave -->
+                        <div class="leave-row">
+                    
+                            <div class="leave-left">
+                                <div class="input-box">
+                                    <div class="form-group">
+                                        <label>Days</label>
+                                        <input type="text" 
+                                                class="form-control"
+                                               wire:model.defer='days'>
                                     </div>
-                                    
                                 </div>
-                            
-                            <!-- Earned Leave -->
-                            <div class="leave-row">
+                            </div>
+                          
+                        </div>
+                        <!-- /Annual Days Leave -->
+                        
+                    
+                        <!-- /Carry Forward -->
+
+                              <!-- Earned Leave -->
+                              <div class="leave-row">
                                 <div class="leave-left">
                                     <div class="input-box">
-                                        <label class="d-block">Earned leave</label>
+                                        <label class="d-block">Carry forward</label>
                                         <div class="leave-inline-form">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" wire:model.defer="earned_leave"  value="0"   >
+                                                <input class="form-check-input" type="radio" name="carry_forward" id="carry_forward1" wire:model.defer="carry_forward" value="0" >
                                                 <label class="form-check-label" for="inlineRadio1">No</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" wire:model.defer="earned_leave" value="1">
+                                                <input class="form-check-input" type="radio" name="carry_forward" id="carry_forward2" wire:model.defer="carry_forward" value="1">
                                                 <label class="form-check-label" for="inlineRadio2">Yes</label>
                                             </div>
                                         </div>
@@ -103,25 +87,55 @@
                                 </div>
                                 
                             </div>
-                            <!-- /Earned Leave -->
-                            
-                        </div>
                         
-                        <!-- Custom Policy -->
-                        <div class="custom-policy">
-                            <div class="leave-header">
-                                <div class="title">Custom policy</div>
-                                <div class="leave">
-                                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#add_custom_policy"><i class="fa fa-plus"></i> Add custom policy</button>
+                        <!-- Earned Leave -->
+                        <div class="leave-row">
+                            <div class="leave-left">
+                                <div class="input-box">
+                                    <label class="d-block">Earned leave</label>
+                                    <div class="leave-inline-form">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" wire:model.defer="earned_leave"  value="0"   >
+                                            <label class="form-check-label" for="inlineRadio1">No</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" wire:model.defer="earned_leave" value="1">
+                                            <label class="form-check-label" for="inlineRadio2">Yes</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                          
+                            
                         </div>
+                        <!-- /Earned Leave -->
+                        
+                    </div>
+                    
+                    <!-- Custom Policy -->
+                    <div class="custom-policy">
+                        <div class="leave-header">
+                            <div class="title">Custom policy</div>
+                            <div class="leave">
+                                <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#add_custom_policy"><i class="fa fa-plus"></i> Add custom policy</button>
+                            </div>
+                        </div>
+                      
+                    </div>
 
-                        <div class="leave-row" >
-                            <input class="btn btn-success" type="button" value="save" wire:click.prevent="save('{{ $leave->id}}') ">
-                        </div>
-                        <!-- /Custom Policy -->
+
+                    <div class="leave-row" >
+                        <button 
+                            class="btn btn-success" 
+                            type="button" 
+                            wire:click.prevent="save('{{ $leave->id }} ')">
+                            save
+                        </button>
+                    </div>
+                    <!-- /Custom Policy -->
+                 </div>
+                       
+                   @endif
+
                         
                     </div>
                 </div>
@@ -330,4 +344,5 @@
     </div>
     <!-- /Delete Custom Policy Modal -->
     
+</div>
 </div>

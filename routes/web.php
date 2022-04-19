@@ -28,9 +28,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('trainers', [\App\Http\Controllers\Training::class, 'trainers'])->name('trainers');
     Route::get('trainings', [\App\Http\Controllers\Training::class, 'index'])->name('training.index');
     Route::get('training-type', [\App\Http\Controllers\Training::class, 'trainingType'])->name('training-type');
-    Route::get('resignation', [\App\Http\Controllers\ResignationController::class, 'index'] )->name('resignation.index');
-    Route::get('promotion', [\App\Http\Controllers\PromotionController::class, 'index'] )->name('promotion.index');
-    Route::get('department', [\App\Http\Controllers\DepartmentController::class, 'index'] )->name('department.index');
+    Route::get('resignations', [\App\Http\Controllers\ResignationController::class, 'index'] )->name('resignation.index');
+    Route::get('promotions', [\App\Http\Controllers\PromotionController::class, 'index'] )->name('promotion.index');
+    Route::get('departments', [\App\Http\Controllers\DepartmentController::class, 'index'] )->name('department.index');
 
     Route::get('holidays', [\App\Http\Controllers\HolidayController::class, 'index'] )->name('holiday.index');
 

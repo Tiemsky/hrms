@@ -14,8 +14,8 @@ class RequestedLeave extends Model
         return $this->belongsTo(Leave::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
