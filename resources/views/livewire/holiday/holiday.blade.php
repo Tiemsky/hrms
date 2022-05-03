@@ -16,7 +16,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -33,15 +33,15 @@
                         <tbody>
                             @foreach ($holidays as $holiday)
                             <tr class="holiday-completed">
-                                <td>1</td>
+                                <td>{{ ++$loop->index }} </td>
                                 <td>{{ $holiday->name }} </td>
                                 <td>{{ $holiday->date }} </td>
                                 <td>{{ date('l',strtotime($holiday->date)) }} </td>
                                 <td></td>
                             </tr>
                             @endforeach
-                           
-                       
+
+
                         </tbody>
                     </table>
                 </div>
@@ -63,7 +63,7 @@
 								<form>
 									<div class="form-group">
 										<label>Holiday Name <span class="text-danger">*</span></label>
-										<input class="form-control" 
+										<input class="form-control"
                                                 type="text"
                                                 wire:model.defer='name'>
                                                 @error('name')
@@ -73,10 +73,9 @@
 									<div class="form-group">
 										<label>Holiday Date <span class="text-danger">*</span></label>
 										<div class="cal-icon">
-                                            <input class="form-control" 
-                                                    type="text"
-                                                    wire:model='date'
-                                                    id="date">
+                                            <input class="form-control"
+                                                    type="date"
+                                                    wire:model.defer='date'>
                                                     @error('date')
                                                     <span class="invalid-feedback"> {{ $message }}</span>
                                                 @enderror
@@ -91,7 +90,7 @@
 					</div>
 				</div>
 				<!-- /Add Holiday Modal -->
-				
+
 				<!-- Edit Holiday Modal -->
 				<div class="modal custom-modal fade" id="edit_holiday" role="dialog">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -156,11 +155,11 @@
     $('#edit_education_info').modal('hide')
     $('#create_experience_info').modal('hide')
     $('#edit_experience_info').modal('hide')
-    
 
-    
 
-   
+
+
+
 })
 </script>
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -172,7 +171,7 @@
     //     onSelect: function() {
     //         console.log(this.getMoment().format('Do MMMM YYYY'));
     //     }
-        
+
     // });
 
 

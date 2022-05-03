@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('leave_to');
             $table->integer('number_of_day');
             $table->longText('leave_reason');
-            $table->boolean('status')->default(1); //default 1 pending mode
+            $table->integer('status')->default(1); //default 1 pending mode
             $table->timestamps();
         });
     }

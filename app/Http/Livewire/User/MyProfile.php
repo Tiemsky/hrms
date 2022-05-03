@@ -16,10 +16,10 @@ use Livewire\WithFileUploads;
 
 class MyProfile extends Component
 {
-    use WithFileUploads;    
+    use WithFileUploads;
 
     public $first_name, $last_name, $phone, $gender, $address, $avatar, $date_of_birth;
-    public $document_number, $expiration_date, $nationality, $religion, $matrial_status, $number_of_children;
+    public $document_number, $expiration_date, $nationality, $religion, $marital_status, $number_of_children;
     public $itemToBeDeleted, $itemToBeUpdated, $model,$isCurrentPosition=0;
 
 
@@ -27,7 +27,7 @@ class MyProfile extends Component
 
    }
 
-   
+
 
     public $months = [
         ['abr' => 'Jan',    'num' => '01'],
@@ -49,10 +49,10 @@ class MyProfile extends Component
         ['type' =>'Self-Employment'],
         ['type' =>'Internship'],
         ['type' =>'Trainee'],
-    ]; 
-    
- 
- 
+    ];
+
+
+
     public function uploadPhoto()
     {
         $this->validate([
@@ -65,7 +65,7 @@ class MyProfile extends Component
 
 
     protected function renameImage($image)
-    {  
+    {
         $user=$this->getUserInfo();
         $path='public/avatar';
         if($user->avatar  && $path.'/'.$user->avatar){
@@ -77,10 +77,10 @@ class MyProfile extends Component
         return $new_name;
     }
 
-   
 
-    
-    
+
+
+
     public function editUserInfo()
     {
         $user = $this->getUserInfo();
@@ -94,28 +94,28 @@ class MyProfile extends Component
 
     public function userUpdate()
     {
-       
+
         $this->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'gender' => 'required',
-            'address' => 'required',
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'gender'        => 'required',
+            'address'       => 'required',
             'date_of_birth' => 'required',
-            'phone' => 'required',
+            'phone'         => 'required',
         ]);
         if($this->avatar){
             $this->uploadPhoto();
         }
-       
+
         User::where('id', Auth::user()->id)->update([
-            'first_name'    => $this->first_name,
-            'last_name'    => $this->last_name,
-            'gender'    => $this->gender,
-            'phone'    => $this->phone,
-            'address'    => $this->address,
-            'date_of_birth' =>$this->date_of_birth
+            'first_name'        => $this->first_name,
+            'last_name'         => $this->last_name,
+            'gender'            => $this->gender,
+            'phone'             => $this->phone,
+            'address'           => $this->address,
+            'date_of_birth'     =>$this->date_of_birth
         ]);
-  
+
         $this->dispatchBrowserEvent('userUpdatedSuccessfully');
     }
 
@@ -132,20 +132,22 @@ class MyProfile extends Component
         $this->expiration_date = $user->expiration_date;
         $this->nationality = $user->nationality;
         $this->religion = $user->religion;
-        $this->matrial_status = $user->matrial_status;
+        $this->marital_status = $user->marital_status;
         $this->number_of_children = $user->number_of_children;
     }
 
-    public function updatePeronalInfo()
+    public function updatePersonalInfo()
     {
         $data = $this->validate([
             'document_number'   => 'required',
             'expiration_date'   => 'required',
-            'nationality'   => 'required',
-            'religion'   => 'required',
-            'matrial_status'   => 'required',
-            'number_of_children'   => 'required',
+            'nationality'       => 'required',
+            'religion'          => 'required',
+            'marital_status'    => 'required',
+            'number_of_children'=> 'required',
         ]);
+
+
 
         User::find(Auth::user()->id)->update($data);
         $this->reset();
@@ -157,7 +159,7 @@ class MyProfile extends Component
     public function editEmergencyContact()
     {
         $user = $this->getUserInfo();
-  
+
         if($user->emergencyContact){
             $this->name_one = $user->emergencyContact->name_one;
             $this->phone_one = $user->emergencyContact->phone_one;
@@ -167,7 +169,7 @@ class MyProfile extends Component
             $this->phone_two = $user->emergencyContact->phone_two;
             $this->relationship_two = $user->emergencyContact->relationship_two;
         }
-        
+
     }
 
     public function emergencyContact()
@@ -187,7 +189,7 @@ class MyProfile extends Component
                 'phone_two' => $this->phone_two,
                 'relationship_two' => $this->relationship_two
             ],
-    
+
         );
 
         $this->reset();
@@ -202,9 +204,9 @@ class MyProfile extends Component
 
     public function createEducationExperience($model)
     {
-        
+
         if($model == 'education'){
-            
+
             $education = $this->validate([
                 'university'    => 'required',
                 'course'        => 'required',
@@ -217,7 +219,7 @@ class MyProfile extends Component
 
             $education = array_merge(['user_id' => Auth::user()->id], $education);
             Education::Create($education);
-            
+
         }
         if($model == 'experience'){
             if($this->isCurrentPosition)
@@ -237,7 +239,7 @@ class MyProfile extends Component
 
             ]);
 
-           
+
             $experience = array_merge(['user_id' => Auth::user()->id], $experience);
             $experience = array_merge(['currentPosition' => $this->isCurrentPosition], $experience);
             Experience::Create($experience);
@@ -246,12 +248,12 @@ class MyProfile extends Component
         $this->dispatchBrowserEvent('education-experience');
     }
 
-    
+
 
     public function editEducationExperience($model, $id)
     {
        if($model == 'education'){
-    
+
         $education = Education::where('id', $id)->first();
         $this->university   = $education->university;
         $this->course       = $education->course;
@@ -274,15 +276,15 @@ class MyProfile extends Component
         $this->isCurrentPosition = $experience->currentPosition;
         $this->itemToBeUpdated = $id;
        }
-    
-  
+
+
     }
 
 
     public function updateEducationExperience($model)
     {
         if($model == 'education'){
-            
+
             $education = $this->validate([
                 'university'    => 'required',
                 'course'        => 'required',
@@ -294,16 +296,16 @@ class MyProfile extends Component
             ]);
 
 
-            Education::where('id', $this->itemToBeUpdated)->update($education);            
+            Education::where('id', $this->itemToBeUpdated)->update($education);
         }
-        
+
         if($model == 'experience'){
             if($this->isCurrentPosition)
             {
                 $this->to_period = '';
                 $this->isCurrentPosition = 1;
             }
-           
+
             $experience = $this->validate([
                 'title'             => 'required',
                 'company'           => 'required',
@@ -316,16 +318,16 @@ class MyProfile extends Component
 
             ]);
             $experience = array_merge(['currentPosition' => $this->isCurrentPosition], $experience);
-            Experience::where('id', $this->itemToBeUpdated)->update($experience);            
+            Experience::where('id', $this->itemToBeUpdated)->update($experience);
 
-           
+
         }
         $this->reset();
         $this->dispatchBrowserEvent('education-experience');
     }
 
 
- 
+
 
 
 
@@ -339,13 +341,13 @@ class MyProfile extends Component
 
     public function delete()
     {
-        
+
      if(!$this->model == 'education' || !$this->model == 'experience'){
-    
+
          return redirect()->back();
      }else{
         if($this->model == 'education'){
-         
+
             Education::findOrFail($this->itemToBeDeleted)->delete();
         }
         if($this->model == 'experience'){
@@ -360,23 +362,22 @@ class MyProfile extends Component
     {
         return  User::with(['educations','experiences','emergencyContact'])
                         ->where('id',Auth::user()->id)
-                        ->first();        
+                        ->first();
     }
 
     public function switchPosition()
         {
-            $this->isCurrentPosition = !$this->isCurrentPosition;  
+            $this->isCurrentPosition = !$this->isCurrentPosition;
         }
-       
+
 
 
     public function render()
     {
-        
-        $user = User::with(['experiences', 'educations','departement','emergencyContact'])
+
+        $user = User::with(['experiences', 'educations','department','emergencyContact'])
                     ->where('id', Auth::user()->id)
                     ->first() ;
-                    
         $countries = Country::all();
         return view('livewire.user.my-profile', compact('user','countries'));
     }

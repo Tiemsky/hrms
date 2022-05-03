@@ -41,15 +41,14 @@
 
 
                 <li class="submenu">
-                    <a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+                    <a href="#" class="{{ request()->segment(1)=='users' ? 'active' : ''}} " class="noti-dot">
+                        <i class="la la-user"></i>
+                        <span> Employees</span>
+                        <span class="menu-arrow"></span>
+                    </a>
                     <ul style="display: none;">
                         <li><a  href="{{ route('user.index') }} ">All Employees</a></li>
-                        <li><a href="attendance.html">Attendance (Admin)</a></li>
                         <li><a href="attendance-employee.html">Attendance (Employee)</a></li>
-                        <li><a href="designations.html">Designations</a></li>
-                        <li><a href="timesheet.html">Timesheet</a></li>
-                        <li><a href="shift-scheduling.html">Shift & Schedule</a></li>
-                        <li><a href="overtime.html">Overtime</a></li>
                     </ul>
                 </li>
 

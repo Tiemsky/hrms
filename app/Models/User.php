@@ -40,7 +40,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-  
+
+
+
 
     public function educations()
     {
@@ -65,7 +67,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function department()
     {
-        // return 120;
         return $this->belongsTo(Department::class);
     }
 
@@ -81,5 +82,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function country(){
         return $this->belongsTo(Country::class);
+    }
+
+    public function trainers(){
+        return $this->hasMany(Trainer::class);
+    }
+
+    public function promotion(){
+        return $this->hasOne(Promotion::class);
     }
 }

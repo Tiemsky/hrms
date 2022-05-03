@@ -1,25 +1,17 @@
 <div class="header">
-        
+
     <!-- Logo -->
     <div class="header-left">
         <a href="index.html" class="logo">
 
-            
-            <img  width="40" height="40" alt=""
-            @if ($user->avatar == '')
-            @if ($user->gender  == 'male')
-                src="{{asset('assets/img/default_profil/male.jpg')}} "
-                @else
-                src="{{asset('assets/img/default_profil/female.jpg')}} "
-            @endif
-            @else
-                src="{{asset('storage/avatar/'.$user->avatar)}} "
-            @endif>
-            
+
+            <img  width="40" height="40" alt="logo"
+                src="{{asset('assets/img/logo/logo.png')}}"
+                >
         </a>
     </div>
     <!-- /Logo -->
-    
+
     <a id="toggle_btn" href="javascript:void(0);">
         <span class="bar-icon">
             <span></span>
@@ -27,7 +19,7 @@
             <span></span>
         </span>
     </a>
-    
+
     <!-- Header Title -->
     <div class="page-title-box">
         <h3>
@@ -39,12 +31,12 @@
         </h3>
     </div>
     <!-- /Header Title -->
-    
+
     <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
-    
+
     <!-- Header Menu -->
     <ul class="nav user-menu">
-    
+
         <!-- Search -->
         <li class="nav-item">
             <div class="top-nav-search">
@@ -58,13 +50,13 @@
             </div>
         </li>
         <!-- /Search -->
-    
+
         <!-- Flag -->
         <li class="nav-item dropdown ">
          <a type="button" class="nav-link" id="clock">Counter Time</a>
         </li>
         <!-- /Flag -->
-    
+
         <!-- Notifications -->
         <li class="nav-item dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -150,7 +142,7 @@
             </div>
         </li>
         <!-- /Notifications -->
-        
+
         <!-- Message Notifications -->
         <li class="nav-item dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -280,7 +272,7 @@
         </li>
     </ul>
     <!-- /Header Menu -->
-    
+
     <!-- Mobile Menu -->
     <div class="dropdown mobile-user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -291,11 +283,11 @@
         </div>
     </div>
     <!-- /Mobile Menu -->
-    
+
 </div>
 
 <script>
-     
+
     setInterval(displayclock, 500);
     function displayclock() {
         var time = new Date();
@@ -324,5 +316,5 @@
         document.getElementById("clock").innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
-        
+
 </script>

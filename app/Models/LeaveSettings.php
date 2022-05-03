@@ -11,5 +11,10 @@ class LeaveSettings extends Model
     protected $guarded = [];
 
 
+    public function leave()
+    {
+        return $this->belongsTo(Leave::class);
+    }
+
 
 }

@@ -12,9 +12,7 @@
                         <li class="breadcrumb-item active">Leaves</li>
                     </ul>
                 </div>
-                <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn " data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i> Add Leave</a>
-                </div>
+
             </div>
         </div>
         <!-- /Page Header -->
@@ -113,7 +111,7 @@
                                 <th>No of Days</th>
                                 <th>Reason</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-right">Actions</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -132,26 +130,32 @@
                                 <td>{{$requestedLeave->number_of_day}} </td>
                                 <td>{{$requestedLeave->leave_reason}}  </td>
                                 <td class="text-center">
+                                    @if ($requestedLeave->status == 1)
                                     <div class="dropdown action-label">
-                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-dot-circle-o text-purple"></i> New
+                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-dot-circle-o {{ $requestedLeave->status == 0 ? 'text-danger' : ($requestedLeave->status == 1 ? 'text-warning' : 'text-success' )  }}"></i>
+                                             {{ ($requestedLeave->status == 0 )? 'Declined' : ($requestedLeave->status == 1 ? 'Pending' : 'Approved') }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-purple"></i> New</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Pending</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#approve_leave"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Declined</a>
+                                            @foreach ($requestStatus as $state)
+                                                @if ($requestedLeave->status != $state['number'])
+
+                                                    <a class="dropdown-item" type="button" wire:click.prevent="updateRequestStatus({{ $requestedLeave->id }}, {{ $state['number'] }} )">
+                                                        <i class="fa fa-dot-circle-o {{ $state['number'] == 0 ? 'text-danger' : ($state['number'] == 1 ? 'text-warning' : 'text-success' )  }}"></i>
+                                                        {{ $state['status']}}
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                            {{-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#approve_leave"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Declined</a> --}}
                                         </div>
                                     </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leave"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_approve"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                    @else
+                                    <p class="text-center text-{{$requestedLeave->status == 0 ? 'danger' : ($requestedLeave->status == 1 ? 'warning' : 'success') }}">
+                                        {{ $requestedLeave->status == 0 ? 'Declined' : ($requestedLeave->status == 1 ? 'Pending' : 'Approved!') }}
+                                    </p>
+                                    @endif
+
                                 </td>
                             </tr>
                           @endforeach

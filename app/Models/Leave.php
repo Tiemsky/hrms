@@ -14,4 +14,8 @@ class Leave extends Model
     {
         return $this->hasOne(LeaveSettings::class);
     }
+
+    public function requestedLeave(){
+        return $this->hasOne(RequestedLeave::class);
+    }
 }

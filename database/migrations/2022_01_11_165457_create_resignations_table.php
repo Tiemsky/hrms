@@ -16,7 +16,6 @@ class CreateResignationsTable extends Migration
         Schema::create('resignations', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('departement');
             $table->string('reason');
             $table->string('notice_date');
             $table->string('resignation_date');

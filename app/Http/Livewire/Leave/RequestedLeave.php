@@ -9,7 +9,7 @@ class RequestedLeave extends Component
 {
     public function render()
     {
-        $requestedLeaves = ModelsRequestedLeave::with(['user','leave'])->get();
+        $requestedLeaves = ModelsRequestedLeave::with(['user.department','leave'])->get();
         return view('livewire.leave.requested-leave', compact('requestedLeaves'));
     }
 }

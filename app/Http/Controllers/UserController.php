@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         return view('user.users-list');
     }
-    
+
     public function home()
     {
         return view('home');

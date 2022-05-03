@@ -11,6 +11,7 @@ class Home extends Component
         $this->dispatchBrowserEvent('notification', [
             'message'   => 'testing'
         ]);
+
         return view('livewire.home');
     }
 }

@@ -27,15 +27,16 @@ class UserFactory extends Factory
         DB::table('users')->delete();
         $gender = $this->faker->randomElement(['male', 'female']);
         $status = $this->faker->randomElement(['active', 'blocked','deleted']);
-        
+
         return [
             'first_name' => $this->faker->name(),
             'last_name' => $this->faker->name(),
+            'position' => $this->faker->text(),
             'employee_id'  => $this->faker->uuid(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'gender'=>$gender,
-            'joindate'=> now(),
+            'join_date'=> now(),
             'isAdmin'=>rand(0,2),
             'phone'=>$this->faker->phoneNumber,
             'status'=>$status,

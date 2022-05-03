@@ -1,6 +1,6 @@
 <div class="content container-fluid">
     <div>
-				
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -17,34 +17,35 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0 datatable">
+                    <table class="table table-striped custom-table mb-0 ">
                         <thead>
                             <tr>
                                 <th style="width: 30px;">#</th>
                                 <th>Name </th>
                                 <th>Contact Number </th>
                                 <th>Email </th>
-                                <th>Description </th>
+                                <th>Role </th>
                                 <th>Status </th>
                                 <th class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($trainers as $trainer)
                             <tr>
-                                <td>1</td>
+                                <td>{{ ++$loop->index }} </td>
                                 <td>
                                     <h2 class="table-avatar">
                                         <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                        <a href="profile.html">John Doe </a>
+                                        <a href="profile.html">{{ $trainer->user->last_name }}  </a>
                                     </h2>
                                 </td>
-                                <td>9876543210</td>
-                                <td>johndoe@example.com</td>
-                                <td>Lorem ipsum dollar</td>
+                                <td>{{ $trainer->user->phone }} </td>
+                                <td>{{ $trainer->user->email }} </td>
+                                <td>{{ $trainer->role }}</td>
                                 <td>
                                     <div class="dropdown action-label">
                                         <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -66,134 +67,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                        <a href="profile.html">Mike Litorus </a>
-                                    </h2>
-                                </td>
-                                <td>9876543120</td>
-                                <td>mikelitorus@example.com</td>
-                                <td>Lorem ipsum dollar</td>
-                                <td>
-                                    <div class="dropdown action-label">
-                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-dot-circle-o text-success"></i> Active
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-                                        <a href="profile.html">Wilmer Deluna </a>
-                                    </h2>
-                                </td>
-                                <td>9876543210</td>
-                                <td>wilmerdeluna@example.com</td>
-                                <td>Lorem ipsum dollar</td>
-                                <td>
-                                    <div class="dropdown action-label">
-                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-dot-circle-o text-danger"></i> Inactive
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                        <a href="profile.html">John Smith </a>
-                                    </h2>
-                                </td>
-                                <td>9876543210</td>
-                                <td>johnsmith@example.com</td>
-                                <td>Lorem ipsum dollar</td>
-                                <td>
-                                    <div class="dropdown action-label">
-                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-dot-circle-o text-danger"></i> Inactive
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>
-                                    <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-                                        <a href="profile.html">Richard Miles </a>
-                                    </h2>
-                                </td>
-                                <td>9876543210</td>
-                                <td>richardmiles@example.com</td>
-                                <td>Lorem ipsum dollar</td>
-                                <td>
-                                    <div class="dropdown action-label">
-                                        <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-dot-circle-o text-danger"></i> Inactive
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -203,7 +78,7 @@
     <!-- /Page Content -->
 
     <!-- Add Trainers List Modal -->
-    <div id="add_trainer" class="modal custom-modal fade" role="dialog">
+    <div wire:ignore.self id="add_trainer" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -215,62 +90,47 @@
                 <div class="modal-body">
                     <form>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Last Name</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Role <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="email">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Phone </label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Status</label>
-                                    <select class="select">
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" rows="4"></textarea>
+                                    <label class="col-form-label">Trainer<span class="text-danger">*</span></label>
+
+                                        <select class="form-control" wire:model='trainer'>
+                                            <option value="">Select Trainer</option>
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }} ">{{ $user->last_name }} {{ $user->first_name }} </option>
+                                            @endforeach
+                                        </select>
+                                        @error('trainer')
+                                            <span class="invalid-feedback"> {{$message}}  </span>
+                                        @enderror
+
                                 </div>
                             </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Role <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" wire:model.defer='role'>
+                                    @error('role')
+                                        <span class="invalid-feedback"> {{$message}}  </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            </div>
+                            <div class="submit-section">
+                                <button class="btn btn-primary submit-btn"
+                                wire:click.prevent='addTrainer'
+                                >Add</button>
+                            </div>
                         </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Submit</button>
-                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- /Add Trainers List Modal -->
-    
+
     <!-- Edit Trainers List Modal -->
     <div id="edit_type" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -339,7 +199,7 @@
         </div>
     </div>
     <!-- /Edit Trainers List Modal -->
-    
+
     <!-- Delete Trainers List Modal -->
     <div class="modal custom-modal fade" id="delete_type" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
@@ -363,4 +223,13 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        window.addEventListener('trainer', event => {
+        $('#add_trainer').modal('hide')
+
+
+    })
+    </script>
 </div>

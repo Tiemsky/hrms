@@ -1,7 +1,7 @@
 <div class="content container-fluid">
     <!-- Page Content -->
     <div>
-				
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <div class="card mb-0">
             <div class="card-body">
                 <div class="row">
@@ -24,7 +24,7 @@
                             <div class="profile-img-wrap">
                                 <div class="profile-img">
                                     <a href="#">
-                                        <img alt="avatar" 
+                                        <img alt="avatar"
                                         @if ($user->avatar == '')
                                             @if ($user->gender  == 'male')
                                                 src="{{asset('assets/img/default_profil/male.jpg')}} "
@@ -42,7 +42,7 @@
                                     <div class="col-md-5">
                                         <div class="profile-info-left">
                                             <h3 class="user-name m-t-0 mb-0">{{ $user->first_name }} {{ $user->last_name }} </h3>
-                                            <h6 class="text-muted">{{ $user->departement->name }} </h6>
+                                            <h6 class="text-muted">{{ $user->department->name }} </h6>
                                             <small class="text-muted">Web Designer</small>
                                             <div class="staff-id">Employee ID : {{ $user->employee_id }} </div>
                                             <div class="small doj text-muted">Date of Join : {{ $user->created_at }} </div>
@@ -77,9 +77,9 @@
                                 </div>
                             </div>
                             <div class="pro-edit">
-                                <a data-target="#profile_info" 
-                                    data-toggle="modal" 
-                                    class="edit-icon" 
+                                <a data-target="#profile_info"
+                                    data-toggle="modal"
+                                    class="edit-icon"
                                     type="button" wire:click.prevent='editUserInfo'>
                                     <i class="fa fa-pencil">
                                     </i>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card tab-box">
             <div class="row user-tabs">
                 <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
@@ -102,18 +102,18 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="tab-content">
-        
+
             <!-- Profile Info Tab -->
             <div id="emp_profile" class="pro-overview tab-pane fade show active">
                 <div class="row">
                     <div class="col-md-6 d-flex">
                         <div class="card profile-box flex-fill">
                             <div class="card-body">
-                                <h3 class="card-title">Personal Informations 
-                                    <a href="#" class="edit-icon" 
-                                                data-toggle="modal" 
+                                <h3 class="card-title">Personal Informations
+                                    <a href="#" class="edit-icon"
+                                                data-toggle="modal"
                                                 data-target="#personal_info_modal"
                                                 wire:click.prevent=editPersonalInfo()>
                                         <i class="fa fa-pencil"></i>
@@ -139,12 +139,12 @@
                                     </li>
                                     <li>
                                         <div class="title">Marital status</div>
-                                        <div class="text">{{ $user->matrial_status ?  $user->matrial_status  : 'N/A'}} </div>
+                                        <div class="text">{{ $user->marital_status ?  $user->marital_status  : 'N/A'}} </div>
                                     </li>
 
                                     <li>
                                         <div class="title">No. of children</div>
-                                        <div class="text">{{ $user->number_of_children ?  $user->number_of_children   : 'N/A' }} </div>
+                                        <div class="text">{{ isset($user->number_of_children) ?  $user->number_of_children   : 'N/A' }} </div>
                                     </li>
                                 </ul>
                             </div>
@@ -153,9 +153,9 @@
                     <div class="col-md-6 d-flex">
                         <div class="card profile-box flex-fill">
                             <div class="card-body">
-                                <h3 class="card-title">Emergency Contact 
-                                    <a type="button" class="edit-icon" 
-                                                data-toggle="modal" 
+                                <h3 class="card-title">Emergency Contact
+                                    <a type="button" class="edit-icon"
+                                                data-toggle="modal"
                                                 data-target="#emergency_contact_modal"
                                                 wire:click.prevent='editEmergencyContact'
                                         ><i class="fa fa-pencil"></i>
@@ -186,7 +186,7 @@
                                     <li>
                                         <div class="title">Relationship</div>
                                         <div class="text">{{ $user->emergencyContact ? $user->emergencyContact->relationship_two : 'N/A' }}  </div>
-            
+
                                     </li>
                                     <li>
                                         <div class="title">Phone </div>
@@ -202,14 +202,14 @@
                     <div class="col-md-6 d-flex">
                         <div class="card profile-box flex-fill">
                             <div class="card-body">
-                                <h3 class="card-title">Education Informations 
-                                    <a href="#" class="edit-icon" 
-                                                data-toggle="modal" 
+                                <h3 class="card-title">Education Informations
+                                    <a href="#" class="edit-icon"
+                                                data-toggle="modal"
                                                 data-target="#create_education_info">
                                                 <i class="fa fa-plus-circle"></i>
                                     </a>
 
-                                    
+
                                 </h3>
                                 <div class="experience-box">
                                     <ul class="experience-list">
@@ -219,23 +219,23 @@
                                                 <div class="before-circle"></div>
                                             </div>
                                             <div class="experience-content">
-                                                <a type="button" 
+                                                <a type="button"
                                                 class="delete-icon"
-                                                data-toggle="modal" 
+                                                data-toggle="modal"
                                                 data-target="#delete"
                                                 wire:click.prevent="getElementId('education', {{ $education->id }}) ">
 
                                                 <i class="fa fa-trash-o"></i>
                                                 </a>
 
-                                                <a type="button" class="edit-icon" 
-                                                    data-toggle="modal" 
+                                                <a type="button" class="edit-icon"
+                                                    data-toggle="modal"
                                                     data-target="#edit_education_info"
                                                     wire:click.prevent="editEducationExperience('education', {{ $education->id }}) ">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
 
-                                              
+
                                                 <div class="timeline-content">
                                                     <a href="" class="name">{{ $education->university }} </a>
                                                     <div>{{ $education->country }} - {{ $education->state }} - {{ $education->city }}</div>
@@ -245,7 +245,7 @@
                                             </div>
                                         </li>
                                     @endforeach
-           
+
                                     </ul>
                                 </div>
                             </div>
@@ -255,10 +255,10 @@
                         <div class="card profile-box flex-fill">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    Experience 
-                                    <a href="#" 
-                                        class="edit-icon" 
-                                        data-toggle="modal" 
+                                    Experience
+                                    <a href="#"
+                                        class="edit-icon"
+                                        data-toggle="modal"
                                         data-target="#create_experience_info"
                                         >
                                         <i class="fa fa-plus-circle"></i>
@@ -272,27 +272,27 @@
                                                 <div class="before-circle"></div>
                                             </div>
                                             <div class="experience-content">
-                                                <a type="button" 
+                                                <a type="button"
                                                 class="delete-icon"
-                                                data-toggle="modal" 
+                                                data-toggle="modal"
                                                 data-target="#delete"
                                                 wire:click.prevent="getElementId('experience', {{ $experience->id }}) ">
 
                                                 <i class="fa fa-trash-o"></i>
                                                 </a>
 
-                                                <a type="button" class="edit-icon" 
-                                                    data-toggle="modal" 
+                                                <a type="button" class="edit-icon"
+                                                    data-toggle="modal"
                                                     data-target="#edit_experience_info"
                                                     wire:click.prevent="editEducationExperience('experience', {{ $experience->id }}) ">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
 
-                                              
+
                                                 <div class="timeline-content">
                                                     <a href="" class="name">{{ $experience->title }} </a>
                                                     <div>{{ $experience->company }}</div>
-                                                    
+
                                                     <span class="time">{{ $experience->currentPosition == 1 ? 'Since '. $experience->from_period : $experience->from_period .' - '. $experience->to_period }}</span>
 
                                                     <div>{{ $experience->country }}</div>
@@ -301,7 +301,7 @@
                                             </div>
                                         </li>
                                     @endforeach
-           
+
                                     </ul>
                                 </div>
                             </div>
@@ -336,13 +336,13 @@
                             </div>
                         </div>
                     </div>
-                  
-                    
+
+
                 </div>
 
             </div>
             <!-- /Profile Info Tab -->
-            
+
             <!-- Projects Tab -->
             <div class="tab-pane fade" id="emp_projects">
                 <div class="row">
@@ -408,7 +408,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
                         <div class="card">
                             <div class="card-body">
@@ -471,7 +471,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
                         <div class="card">
                             <div class="card-body">
@@ -534,7 +534,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
                         <div class="card">
                             <div class="card-body">
@@ -600,7 +600,7 @@
                 </div>
             </div>
             <!-- /Projects Tab -->
-            
+
             <!-- Bank Statutory Tab -->
             <div class="tab-pane fade" id="bank_statutory">
                 <div class="card">
@@ -741,7 +741,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <hr>
                             <h3 class="card-title"> ESI Information</h3>
                             <div class="row">
@@ -803,7 +803,7 @@
                                     </div>
                                 </div>
                            </div>
-                            
+
                             <div class="submit-section">
                                 <button class="btn btn-primary submit-btn" type="submit">Save</button>
                             </div>
@@ -812,11 +812,11 @@
                 </div>
             </div>
             <!-- /Bank Statutory Tab -->
-            
+
         </div>
     </div>
     <!-- /Page Content -->
-    
+
     <!-- Profile Modal -->
     <div wire:ignore.self id="profile_info" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -835,8 +835,8 @@
                                     @if ($avatar)
                                         <img src="{{ $avatar->temporaryUrl() }}">
                                     @endif
-                                    <img class="inline-block" alt="avatar" 
-                                  
+                                    <img class="inline-block" alt="avatar"
+
                                     @if ($user->avatar == '')
                                         @if ($user->gender  == 'male')
                                             src="{{asset('assets/img/default_profil/male.jpg')}} "
@@ -846,12 +846,12 @@
                                     @else
                                         src="{{asset('storage/avatar/'.$user->avatar)}} "
                                     @endif>
-                                
+
                                     <div class="fileupload btn">
                                         <span class="btn-text">edit</span>
-                                        <input class="upload" 
-                                                type="file" 
-                                                
+                                        <input class="upload"
+                                                type="file"
+
                                                 wire:model.defer='avatar'>
                                     </div>
                                 </div>
@@ -859,21 +859,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input type="text" 
-                                                    class="form-control" 
+                                            <input type="text"
+                                                    class="form-control"
                                                     wire:model.defer=first_name>
                                         </div>
-                                        
+
                                         @error('first_name')
 										    <span class="invalid-feedback"> {{$message}}  </span>
 									    @enderror
-                                    
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input type="text" 
-                                                    class="form-control" 
+                                            <input type="text"
+                                                    class="form-control"
                                                     wire:model.defer='last_name'>
                                         </div>
                                         @error('last_name')
@@ -885,10 +885,10 @@
                                             <label>Birth Date</label>
                                             <div class="cal-icon">
                                                 <input class="form-control date"
-                                                        id="date" 
+                                                        id="date"
                                                         type="text"
                                                         placeholder="01 Jan 2010"
-                                                        wire:model.lazy='date_of_birth' 
+                                                        wire:model.lazy='date_of_birth'
                                                         >
                                             </div>
                                             @error('date_of_birth')
@@ -912,11 +912,11 @@
                             </div>
                         </div>
                         <div class="row">
-                    
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" 
+                                    <input type="text"
                                             class="form-control"
                                             wire:model.defer='address'>
                                 </div>
@@ -925,13 +925,13 @@
                                 @enderror
                             </div>
 
-                        
+
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" 
-                                            class="form-control" 
+                                    <input type="text"
+                                            class="form-control"
                                             wire:model.defer='phone'>
                                 </div>
                                 @error('phone')
@@ -939,7 +939,7 @@
                                 @enderror
                             </div>
 
-     
+
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary" wire:click.prevent='userUpdate'>Submit</button>
@@ -950,7 +950,7 @@
         </div>
     </div>
     <!-- /Profile Modal -->
-    
+
     <!-- Personal Info Modal -->
     <div wire:ignore.self  id="personal_info_modal" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -967,7 +967,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Passport No | Any other valide ID Card</label>
-                                    <input type="text" 
+                                    <input type="text"
                                             class="form-control"
                                             placeholder="20AC5447657"
                                             wire:model.defer='document_number'>
@@ -979,27 +979,26 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Passport Expiry Date</label>
-                                    
+
                                         <div class="cal-icon">
-                                            <input class="form-control date "
-                                                    id="date"
-                                                    type="text"
+                                            <input class="form-control"
+                                                    type="date"
                                                     placeholder="01 Jan 2010"
-                                                    wire:model.lazy='expiration_date' 
+                                                    wire:model.defer='expiration_date'
                                                     >
                                         </div>
                                         @error('expiration_date')
                                             <span class="invalid-feedback"> {{$message}}  </span>
                                         @enderror
-                                    
+
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nationality <span class="text-danger">*</span></label>
-                                    <input class="form-control" 
-                                            type="text" 
+                                    <input class="form-control"
+                                            type="text"
                                             placeholder="Ivorian"
                                             wire:model.defer='nationality'>
                                         @error('nationality')
@@ -1010,7 +1009,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Religion</label>
-                                    <select class="select form-control" wire:model.defer='religion'>
+                                    <select class="form-control" wire:model.defer='religion'>
                                         <option>-</option>
                                         <option value="Christianity">Christianity</option>
                                         <option value="Islam">Islam</option>
@@ -1018,10 +1017,10 @@
 
                                         <option value="Hinduism">Hinduism</option>
                                         <option value="Buddhism">Buddhism</option>
-                     
+
 
                                         <option value="Hinduism">Hinduism</option>
-                                    
+
                                         <option value="Chinese traditional religion">Chinese traditional religion</option>
 
                                         <option value="African traditional religions">African traditional religions</option>
@@ -1044,7 +1043,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Marital status <span class="text-danger">*</span></label>
-                                    <select class="select form-control" wire:model.defer='matrial_status'>
+                                    <select class="form-control" wire:model.defer='marital_status'>
                                         <option>-</option>
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
@@ -1060,8 +1059,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>No. of children </label>
-                                    <input class="form-control" 
-                                            type="text" 
+                                    <input class="form-control"
+                                            type="text"
                                             placeholder="0"
                                             wire:model.defer='number_of_children'>
                                             @error('number_of_children')
@@ -1071,7 +1070,7 @@
                             </div>
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary" wire:click.prevent='updatePeronalInfo'>Submit</button>
+                            <button class="btn btn-primary" wire:click.prevent='updatePersonalInfo'>Submit</button>
                         </div>
                     </form>
                 </div>
@@ -1079,7 +1078,7 @@
         </div>
     </div>
     <!-- /Personal Info Modal -->
-    
+
     <!-- Family Info Modal -->
     <div id="family_info_modal" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1124,7 +1123,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">Education Informations <a href="javascript:void(0);" class="delete-icon"><i class="fa fa-trash-o"></i></a></h3>
@@ -1169,7 +1168,7 @@
         </div>
     </div>
     <!-- /Family Info Modal -->
-    
+
     <!-- Emergency Contact Modal -->
     <div wire:ignore.self id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1189,7 +1188,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name <span class="text-danger">*</span></label>
-                                            <input type="text" 
+                                            <input type="text"
                                                     class="form-control"
                                                     wire:model.defer='name_one'>
                                         </div>
@@ -1197,7 +1196,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Relationship <span class="text-danger">*</span></label>
-                                            <input class="form-control" 
+                                            <input class="form-control"
                                                     type="text"
                                                     wire:model.defer='relationship_one'>
                                         </div>
@@ -1205,16 +1204,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Phone <span class="text-danger">*</span></label>
-                                            <input class="form-control" 
+                                            <input class="form-control"
                                                     type="text"
                                                     wire:model.defer='phone_one'>
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">Primary Contact</h3>
@@ -1222,7 +1221,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name <span class="text-danger">*</span></label>
-                                            <input type="text" 
+                                            <input type="text"
                                                     class="form-control"
                                                     wire:model.defer='name_two'>
                                         </div>
@@ -1230,7 +1229,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Relationship <span class="text-danger">*</span></label>
-                                            <input class="form-control" 
+                                            <input class="form-control"
                                                     type="text"
                                                     wire:model.defer='relationship_two'>
                                         </div>
@@ -1238,12 +1237,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Phone <span class="text-danger">*</span></label>
-                                            <input class="form-control" 
+                                            <input class="form-control"
                                                     type="text"
                                                     wire:model.defer='phone_two'>
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -1256,7 +1255,7 @@
         </div>
     </div>
     <!-- /Emergency Contact Modal -->
-    
+
     <!-- Education Modal -->
     <div wire:ignore.self id="create_education_info" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1272,12 +1271,12 @@
                         <div class="form-scroll">
                             <div class="card">
                                 <div class="card-body">
-                                  
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='university'>
                                                         @error('university')
@@ -1288,8 +1287,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Computer Science" 
+                                                <input type="text"
+                                                        placeholder="Computer Science"
                                                         class="form-control floating"
                                                         wire:model.defer='course'>
                                                         @error('course')
@@ -1300,21 +1299,21 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                    <input type="month" 
-                                                            class="form-control 
+                                                    <input type="month"
+                                                            class="form-control
                                                             floating"
                                                             wire:model.defer='yearIn'>
                                                             @error('yearIn')
                                                                 <span class="invalid-feedback">{{ $message }} </span>
                                                             @enderror
-                                                
+
                                                 <label class="focus-label">Starting Date</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
                                                     <input type="month"
-                                                     class="form-control 
+                                                     class="form-control
                                                      floating "
                                                      wire:model.defer='yearOut'>
                                                      @error('yearOut')
@@ -1325,32 +1324,32 @@
                                         </div>
 
 
-                                                     
+
                                          <div wire:ignore class="col-md-6">
-                                        
+
                                                 <div class="form-group form-focus focused">
-    
-                                                    <select wire:model.defer="country"  class="custom-select">
+
+                                                    <select wire:model.defer="country"  class="form-control">
                                                         <option value="">Select Country</option>
                                                         @foreach ($countries as $country)
-                                                            <option value="{{ $country->name }} ">{{ $country->name }} </option>  
+                                                            <option value="{{ $country->name }} ">{{ $country->name }} </option>
                                                         @endforeach
-                                                        
+
                                                     </select>
                                                     @error('country')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
                                                 </div>
-                                               
-                                             
+
+
                                             </div>
-                                            
-                                        
+
+
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='state'>
                                                         @error('state')
@@ -1362,8 +1361,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='city'>
                                                         @error('city')
@@ -1372,11 +1371,11 @@
                                                 <label class="focus-label">City</label>
                                             </div>
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                         </div>
                         <div class="submit-section">
@@ -1404,12 +1403,12 @@
                         <div class="form-scroll">
                             <div class="card">
                                 <div class="card-body">
-                                  
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='university'>
                                                         @error('university')
@@ -1420,8 +1419,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Computer Science" 
+                                                <input type="text"
+                                                        placeholder="Computer Science"
                                                         class="form-control floating"
                                                         wire:model.defer='course'>
                                                         @error('course')
@@ -1432,21 +1431,21 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                    <input type="month" 
-                                                            class="form-control 
+                                                    <input type="month"
+                                                            class="form-control
                                                             floating"
                                                             wire:model.defer='yearIn'>
                                                             @error('yearIn')
                                                                 <span class="invalid-feedback">{{ $message }} </span>
                                                             @enderror
-                                                
+
                                                 <label class="focus-label">Starting Date</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
                                                     <input type="month"
-                                                     class="form-control 
+                                                     class="form-control
                                                      floating "
                                                      wire:model.defer='yearOut'>
                                                      @error('yearOut')
@@ -1457,32 +1456,32 @@
                                         </div>
 
 
-                                                     
+
                                          <div wire:ignore class="col-md-6">
-                                        
+
                                                 <div class="form-group form-focus focused">
-    
-                                                    <select wire:model.defer="country"  class="custom-select">
+
+                                                    <select wire:model.defer="country"  class="form-control">
                                                         <option value="">Select Country</option>
                                                         @foreach ($countries as $country)
-                                                            <option value="{{ $country->name }} ">{{ $country->name }} </option>  
+                                                            <option value="{{ $country->name }} ">{{ $country->name }} </option>
                                                         @endforeach
-                                                        
+
                                                     </select>
                                                     @error('country')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
                                                 </div>
-                                               
-                                             
+
+
                                             </div>
-                                            
-                                        
+
+
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='state'>
                                                         @error('state')
@@ -1494,8 +1493,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus focused">
-                                                <input type="text" 
-                                                        placeholder="Oxford University" 
+                                                <input type="text"
+                                                        placeholder="Oxford University"
                                                         class="form-control floating"
                                                         wire:model.defer='city'>
                                                         @error('city')
@@ -1504,11 +1503,11 @@
                                                 <label class="focus-label">City</label>
                                             </div>
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                         </div>
                         <div class="submit-section">
@@ -1520,7 +1519,7 @@
         </div>
     </div>
     <!-- /Education Modal -->
-    
+
     <!-- Experience Modal -->
     <div wire:ignore.self id="create_experience_info" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1540,8 +1539,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="text" 
-                                                        class="form-control floating" 
+                                                <input type="text"
+                                                        class="form-control floating"
                                                         placeholder="Web Developer"
                                                         wire:model.defer='title'>
 
@@ -1554,24 +1553,24 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <select wire:model.defer="employmentType"  class="custom-select">
+                                                <select wire:model.defer="employmentType"  class="form-control">
                                                     <option value="">Select Employement Type</option>
                                                     @foreach ($employmentTypes as $employement)
-                                                        <option value="{{ $employement['type'] }} ">{{ $employement['type'] }} </option>  
+                                                        <option value="{{ $employement['type'] }} ">{{ $employement['type'] }} </option>
                                                     @endforeach
-                                                    
+
                                                 </select>
                                                 @error('location')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="text" 
-                                                        class="form-control floating" 
+                                                <input type="text"
+                                                        class="form-control floating"
                                                         placeholder="Digital Devlopment Inc"
                                                         wire:model.defer='company'>
                                                         @error('company')
@@ -1581,43 +1580,43 @@
                                             </div>
                                         </div>
 
-                                     
+
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <select wire:model.defer="location"  class="custom-select">
+                                                <select wire:model.defer="location"  class="form-control">
                                                     <option value="">Select Location</option>
                                                     @foreach ($countries as $country)
-                                                        <option value="{{ $country->name }} ">{{ $country->name }} </option>  
+                                                        <option value="{{ $country->name }} ">{{ $country->name }} </option>
                                                     @endforeach
-                                                    
+
                                                 </select>
                                                 @error('location')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
- 
+
                                         <div class="col-md-12 ">
 
                                             <div class="form-group form-focus custom-control custom-switch custom-switch-md">
                                                 <input type="checkbox" class="custom-control-input"  wire:click='switchPosition' id="switch-position">
                                                 <label class="custom-control-label" for="switch-position">Current Position</label>
                                               </div>
-   
+
                                         </div>
 
-                                        
-                                    
+
+
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="month" 
+                                                <input type="month"
                                                         class="form-control floating"
                                                         wire:model.defer='from_period'>
                                                         @error('from_period')
                                                             <span class="invalid-feedback">{{ $message }} </span>
                                                         @enderror
-                                               
+
                                                 <label class="focus-label">Period From</label>
                                             </div>
                                         </div>
@@ -1625,20 +1624,20 @@
                                         @if (!$isCurrentPosition)
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="month" 
-                                                        class="form-control floating" 
+                                                <input type="month"
+                                                        class="form-control floating"
                                                         wire:model.defer='to_period'>
-                                               
+
                                                 <label class="focus-label">Period To</label>
                                             </div>
                                         </div>
                                         @endif
-                                     
+
 
                                         <div class="col-md-12">
                                             <div class="form-group form-focus">
                                                 <textarea  cols="80" rows="10" wire:model.defer='jobDescription'></textarea>
-                                               
+
                                                         @error('jobDescription')
                                                             <span class="invalid-feedback" >{{ $message }} </span>
                                                         @enderror
@@ -1646,12 +1645,12 @@
                                             </div>
                                         </div>
 
-                                    
+
                                     </div>
                                 </div>
                             </div>
-                            
-                          
+
+
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary" wire:click.prevent="createEducationExperience('experience') ">Submit</button>
@@ -1681,9 +1680,9 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="text" 
-                                                placeholder="Oxford University" 
-                                                        class="form-control floating" 
+                                                <input type="text"
+                                                placeholder="Oxford University"
+                                                        class="form-control floating"
                                                         wire:model.defer='title'>
 
                                                         @error('title')
@@ -1695,25 +1694,25 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <select wire:model.defer="employmentType"  class="custom-select">
-                                                   
+                                                <select wire:model.defer="employmentType"  class="form-control">
+
                                                     @foreach ($employmentTypes as $employement)
-                                                        <option value="{{ $employement['type'] }} ">{{ $employement['type'] }} </option>  
+                                                        <option value="{{ $employement['type'] }} ">{{ $employement['type'] }} </option>
                                                     @endforeach
-                                                    
+
                                                 </select>
                                                 @error('location')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="text" 
-                                                        class="form-control floating" 
-                                                        
+                                                <input type="text"
+                                                        class="form-control floating"
+
                                                         wire:model.defer='company'>
                                                         @error('company')
                                                             <span class="invalid-feedback" >{{ $message }} </span>
@@ -1722,43 +1721,43 @@
                                             </div>
                                         </div>
 
-                                     
+
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <select wire:model.defer="location"  class="custom-select">
-                                                   
+                                                <select wire:model.defer="location"  class="form-control">
+
                                                     @foreach ($countries as $country)
-                                                        <option value="{{ $country->name }} ">{{ $country->name }} </option>  
+                                                        <option value="{{ $country->name }} ">{{ $country->name }} </option>
                                                     @endforeach
-                                                    
+
                                                 </select>
                                                 @error('location')
                                                     <span class="invalid-feedback">{{ $message }} </span>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
- 
+
                                         <div class="col-md-12 ">
 
                                             <div class="form-group form-focus custom-control custom-switch custom-switch-md">
                                                 <input type="checkbox" class="custom-control-input" {{ $isCurrentPosition == 1 ? 'checked': '' }}   wire:click='switchPosition' id="edit-switch-position">
                                                 <label class="custom-control-label" for="edit-switch-position">Current Position</label>
                                               </div>
-   
+
                                         </div>
 
-                                        
-                                    
+
+
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="month" 
+                                                <input type="month"
                                                         class="form-control floating"
                                                         wire:model.defer='from_period'>
                                                         @error('from_period')
                                                             <span class="invalid-feedback">{{ $message }} </span>
                                                         @enderror
-                                               
+
                                                 <label class="focus-label">Period From</label>
                                             </div>
                                         </div>
@@ -1766,20 +1765,20 @@
                                         @if (!$isCurrentPosition)
                                         <div class="col-md-6">
                                             <div class="form-group form-focus">
-                                                <input type="month" 
-                                                        class="form-control floating" 
+                                                <input type="month"
+                                                        class="form-control floating"
                                                         wire:model.defer='to_period'>
-                                               
+
                                                 <label class="focus-label">Period To</label>
                                             </div>
                                         </div>
                                         @endif
-                                     
+
 
                                         <div class="col-md-12">
                                             <div class="form-group form-focus">
                                                 <textarea  cols="80" rows="10" wire:model.defer='jobDescription'></textarea>
-                                               
+
                                                         @error('jobDescription')
                                                             <span class="invalid-feedback" >{{ $message }} </span>
                                                         @enderror
@@ -1787,12 +1786,12 @@
                                             </div>
                                         </div>
 
-                                    
+
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                         <div class="submit-section">
                             <button class="btn btn-primary" wire:click.prevent="updateEducationExperience('experience')">Submit</button>
@@ -1816,13 +1815,13 @@
                         <div class="row">
 
                             <div class="col-6">
-                                <a href="javascript:void(0);" 
-                                    data-dismiss="modal" 
+                                <a href="javascript:void(0);"
+                                    data-dismiss="modal"
                                     class="btn btn-primary cancel-btn">Cancel</a>
                             </div>
 
                             <div class="col-6">
-                                <a href="javascript:void(0);" 
+                                <a href="javascript:void(0);"
                                     class="btn btn-primary continue-btn"
                                     wire:click.prevent='delete()'>Delete</a>
                             </div>
@@ -1843,7 +1842,7 @@
         //     onSelect: function() {
         //         console.log(this.getMoment().format('Do MMMM YYYY'));
         //     }
-            
+
         // });
 
 
@@ -1869,11 +1868,11 @@
         $('#edit_education_info').modal('hide')
         $('#create_experience_info').modal('hide')
         $('#edit_experience_info').modal('hide')
-        
 
-        
 
-       
+
+
+
     })
 
     window.addEventListener('closeModal', event => {

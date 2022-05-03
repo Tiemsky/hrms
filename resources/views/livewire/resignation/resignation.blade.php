@@ -1,7 +1,7 @@
 <div>
       	<!-- Page Content -->
           <div class="content container-fluid">
-				
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
@@ -18,11 +18,11 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table mb-0 datatable">
+                        <table class="table table-striped custom-table mb-0 ">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -31,32 +31,41 @@
                                     <th>Reason </th>
                                     <th>Notice Date </th>
                                     <th>Resignation Date </th>
-                                    <th class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <h2 class="table-avatar blue-link">
-                                            <a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                            <a href="profile.html">John Doe</a>
-                                        </h2>
-                                    </td>
-                                    <td>Web Development</td>
-                                    <td>Lorem ipsum dollar</td>
-                                    <td>28 Feb 2019</td>
-                                    <td>28 Feb 2019</td>
-                                    <td class="text-right">
-                                        <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_resignation"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_resignation"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($resignations as $resignation)
+                                    <tr>
+                                        <td>{{ ++$loop->index }} </td>
+                                        <td>
+                                            <h2 class="table-avatar blue-link">
+                                                <a href="{{ route('user.profile',[$resignation->user->slug]) }} "
+                                                    class="avatar">
+                                                    <img alt="avatar"
+
+                                                    @if ($resignation->user->avatar == '')
+                                                        @if ($resignation->user->gender  == 'male')
+                                                            src="{{asset('assets/img/default_profil/male.jpg')}} "
+                                                        @else
+                                                            src="{{asset('assets/img/default_profil/female.jpg')}} "
+                                                        @endif
+                                                    @else
+                                                        src="{{asset('storage/avatar/'.$user->avatar)}} "
+                                                    @endif
+                                                        >
+                                                    </a>
+                                                <a href="{{ route('user.profile',[$resignation->user->slug]) }}">
+                                                    {{ $resignation->user->last_name }} {{ $resignation->user->first_name }}
+                                                </a>
+                                            </h2>
+                                        </td>
+                                        <td>{{ $resignation->user->department->name }} </td>
+                                        <td>{{ $resignation->reason }} </td>
+                                        <td>{{ $resignation->notice_date }} </td>
+                                        <td>{{ $resignation->resignation_date }}</td>
+
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -66,7 +75,7 @@
         <!-- /Page Content -->
 
         <!-- Add Resignation Modal -->
-        <div id="add_resignation" class="modal custom-modal fade" role="dialog">
+        <div wire:ignore.self id="add_resignation" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -80,44 +89,46 @@
                             <div class="form-group">
                                 <label>Resigning Employee <span class="text-danger">*</span></label>
                                 <div class="form-group">
-                                    <select class="select" wire:model.defer='user_id'>
+                                    <select class="form-control" wire:model.defer='user_id'>
                                         <option>Select User</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id  }} ">{{ $user->last_name }} </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
+
+
+
+
                             <div class="form-group">
                                 <label>Notice Date <span class="text-danger">*</span></label>
                                 <div class="cal-icon">
-                                    <input type="text" 
-                                            class="form-control 
-                                            datetimepicker"
+                                    <input type="date"
+                                            class="form-control"
                                             wire:model.defer='notice_date'>
                                             @error('notice_date')
                                                 <span class="invalid-feedback"> {{$message}}  </span>
                                             @enderror
-                                
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Resignation Date <span class="text-danger">*</span></label>
                                 <div class="cal-icon">
-                                    <input type="text" 
-                                            class="form-control 
-                                            datetimepicker"
+                                    <input type="date"
+                                            class="form-control"
                                             wire:model.defer='resignation_date'>
                                             @error('resignation_date')
                                                 <span class="invalid-feedback"> {{$message}}  </span>
                                             @enderror
-                                            
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Reason <span class="text-danger">*</span></label>
-                                <textarea class="form-control" 
+                                <textarea class="form-control"
                                             rows="4"
                                             wire:model.defer='reason'></textarea>
                                             @error('reason')
@@ -134,70 +145,9 @@
             </div>
         </div>
         <!-- /Add Resignation Modal -->
-        
-        <!-- Edit Resignation Modal -->
-        <div id="edit_resignation" class="modal custom-modal fade" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Resignation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label>Resigning Employee <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" value="John Doe">
-                            </div>
-                            <div class="form-group">
-                                <label>Notice Date <span class="text-danger">*</span></label>
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" value="28/02/2019">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Resignation Date <span class="text-danger">*</span></label>
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" value="28/02/2019">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Reason <span class="text-danger">*</span></label>
-                                <textarea class="form-control" rows="4"></textarea>
-                            </div>
-                            <div class="submit-section">
-                                <button class="btn btn-primary submit-btn">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Edit Resignation Modal -->
-        
-        <!-- Delete Resignation Modal -->
-        <div class="modal custom-modal fade" id="delete_resignation" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="form-header">
-                            <h3>Delete Resignation</h3>
-                            <p>Are you sure want to delete?</p>
-                        </div>
-                        <div class="modal-btn delete-action">
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                                </div>
-                                <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Delete Resignation Modal -->
+        <script>
+            window.addEventListener('resignation', event => {
+            $('#add_resignation').modal('hide')
+        })
+        </script>
+</div>

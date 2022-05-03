@@ -2,7 +2,7 @@
     <div class="content container-fluid">
         <!-- Page Content -->
         <div>
-    
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            
+
             <!-- Leave Statistics -->
             <div class="row">
                 <div class="col-md-3">
@@ -48,18 +48,18 @@
                 </div>
             </div>
             <!-- /Leave Statistics -->
-            
+
             <!-- Search Filter -->
             <div class="row filter-row">
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                     <div class="form-group form-focus">
                         <input type="text" class="form-control floating">
                         <label class="focus-label">Employee Name</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                     <div class="form-group form-focus select-focus">
-                        <select class="select floating"> 
+                        <select class="select floating">
                             <option> -- Select -- </option>
                             <option>Casual Leave</option>
                             <option>Medical Leave</option>
@@ -68,9 +68,9 @@
                         <label class="focus-label">Leave Type</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12"> 
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                     <div class="form-group form-focus select-focus">
-                        <select class="select floating"> 
+                        <select class="select floating">
                             <option> -- Select -- </option>
                             <option> Pending </option>
                             <option> Approved </option>
@@ -79,7 +79,7 @@
                         <label class="focus-label">Leave Status</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                     <div class="form-group form-focus">
                         <div class="cal-icon">
                             <input class="form-control floating datetimepicker" type="text">
@@ -87,7 +87,7 @@
                         <label class="focus-label">From</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                     <div class="form-group form-focus">
                         <div class="cal-icon">
                             <input class="form-control floating datetimepicker" type="text">
@@ -95,19 +95,19 @@
                         <label class="focus-label">To</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
-                    <a href="#" class="btn btn-success btn-block"> Search </a>  
-                </div>     
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <a href="#" class="btn btn-success btn-block"> Search </a>
+                </div>
             </div>
             <!-- /Search Filter -->
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table mb-0 ">
+                        <table class="table table-striped custom-table mb-0 text-center">
                             <thead>
                                 <tr>
-                                    
+
                                     <th>Leave Type</th>
                                     <th>From</th>
                                     <th>To</th>
@@ -127,15 +127,20 @@
                                     <td>{{ $myLeave->leave_to }} </td>
                                     <td>{{ $myLeave->number_of_day }} </td>
                                     <td>{{ substr_replace($myLeave->leave_reason,' ... ',10) }} </td>
-                                    <td class="text-center">
-                                        status
+                                    <td class="text-center text-{{$myLeave->status == 0 ? 'danger' : ($myLeave->status == 1 ? 'warning' : 'success') }}">
+                                        {{ $myLeave->status == 0 ? 'Declined' : ($myLeave->status == 1 ? 'Pending' : 'Approved!') }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('leave.show-request',[Auth::user()->slug, $myLeave->leave->slug]) }} ">Show More</a>
+                                        <a type="button"
+                                            class="btn btn-more"
+                                            href="{{ route('leave.show-request',[Auth::user()->slug, $myLeave->leave->slug]) }} ">
+                                            Show More
+                                        </a>
                                     </td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leave"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_approve"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
@@ -143,7 +148,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                      
+
                              @endforeach
                             </tbody>
                         </table>
@@ -152,14 +157,14 @@
             </div>
         </div>
         <!-- /Page Content -->
-        
+
         <!-- Add Leave Modal -->
         <div wire:ignore.self id="add_leave" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Leave</h5>
-                       
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -171,9 +176,9 @@
                                 <select class="form-control" wire:model='leave_id' >
                                     <option value="">Select Leave Type</option>
                                     @foreach ($leaves as $leave)
-                                        <option value="{{ $leave->id }} " >{{ $leave->name }} </option>
+                                        <option value="{{ $leave->id }}" {{ $leave->setting ? '' : 'disabled' }} >{{ $leave->name }} </option>
                                     @endforeach
-                                   
+
                                 </select>
                                 @error('leave_id')
                                     <span class="invalid-feedback"> {{ $message }} </span>
@@ -182,7 +187,7 @@
                             <div class="form-group">
                                 <label>From <span class="text-danger">*</span></label>
                                 <div class="">
-                                    <input class="form-control " 
+                                    <input class="form-control "
                                             type="date"
                                             wire:model='leave_from'>
                                 </div>
@@ -193,7 +198,7 @@
                             <div class="form-group">
                                 <label>To <span class="text-danger">*</span></label>
                                 <div class="">
-                                    <input class="form-control " 
+                                    <input class="form-control "
                                             type="date"
                                             wire:model='leave_to'>
                                 </div>
@@ -203,20 +208,23 @@
                             </div>
                             <div class="form-group">
                                 <label>Number of days <span class="text-danger">*</span></label>
-                                <input class="form-control" 
+                                <input class="form-control"
                                         readonly type="text"
                                         wire:model.defer='number_of_day'>
                             </div>
                             <div class="form-group">
                                 <label>Max day can be requested <span class="text-danger">*</span></label>
-                                <input class="form-control" 
+                                <input class="form-control"
                                         readonly
                                         type="text"
                                         wire:model='leave_max_day'>
                             </div>
+                            @if ($error_msg)
+                                <span class="invalid-feedback"> {{ $error_msg}} </span>
+                            @endif
                             <div class="form-group">
                                 <label>Leave Reason <span class="text-danger">*</span></label>
-                                <textarea rows="4" 
+                                <textarea rows="4"
                                             class="form-control"
                                             wire:model.defer='leave_reason'>
                                 </textarea>
@@ -233,7 +241,7 @@
             </div>
         </div>
         <!-- /Add Leave Modal -->
-        
+
         <!-- Edit Leave Modal -->
         <div id="edit_leave" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -286,9 +294,9 @@
             </div>
         </div>
         <!-- /Edit Leave Modal -->
-    
-    
-        
+
+
+
         <!-- Delete Leave Modal -->
         <div class="modal custom-modal fade" id="delete_approve" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
@@ -301,7 +309,7 @@
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a type="button" 
+                                    <a type="button"
                                         class="btn btn-primary continue-btn"
                                         wire:click.prevent='submitLeave'>Delete</a>
                                 </div>
@@ -334,7 +342,7 @@
     //     onSelect: function() {
     //         console.log(this.getMoment().format('Do MMMM YYYY'));
     //     }
-        
+
     // });
 
 
