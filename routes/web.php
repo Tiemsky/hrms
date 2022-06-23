@@ -25,6 +25,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('promotion',[\App\Http\Controllers\UserController::class, 'promotion'])->name('user.promotion');
 
+    Route::get('attendance',[\App\Http\Controllers\UserController::class, 'attendance'])->name('user.attendance');
+
+  //  Route::get('salary',[\App\Http\Controllers\UserController::class, 'salary'])->name('user.salary');
+
     Route::get('trainers', [\App\Http\Controllers\Training::class, 'trainers'])->name('trainers');
     Route::get('trainings', [\App\Http\Controllers\Training::class, 'index'])->name('training.index');
     Route::get('training-type', [\App\Http\Controllers\Training::class, 'trainingType'])->name('training-type');
@@ -39,6 +43,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('leave/send-request', [\App\Http\Controllers\LeaveController::class, 'Sendrequest'] )->name('leave.send-request');
     Route::get('leaves/settings', [\App\Http\Controllers\LeaveController::class, 'settings'] )->name('leave.settings');
     Route::get('leaves/show-requests/{user_slug}/{leave_slug}', [\App\Http\Controllers\LeaveController::class, 'show'] )->name('leave.show-request');
+
+    Route::get('accounting/revenues', [\App\Http\Controllers\RevenueController::class, 'index'] )->name('revenue');
+    Route::get('accounting/expenses', [\App\Http\Controllers\ExpenseController::class, 'index'] )->name('expense');
+
+    Route::get('customer', function(){
+         $currencies = CustomCurrency::Latest() ;
+        foreach($currencies as $key => $currency){
+            echo($key );
+        }
+
+        //print_r($currencies);
+    });
 
 
 

@@ -9,8 +9,20 @@
 
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ request()->segment(1)=='home' ? 'active' : ''}} " href="{{route('user.home')}} ">Admin Dashboard</a></li>
-                        <li><a href="{{route('user.home')}} ">Employee Dashboard</a></li>
+                        @if (Auth::user()->isAdmin == 2)
+                            <li>
+                                <a class="{{ request()->segment(1)=='home' ? 'active' : ''}} "
+                                    href="{{route('user.home')}} ">
+                                    Admin Dashboard
+                                </a>
+                            </li>
+                        @endif
+
+                        <li>
+                            <a href="{{route('user.home')}} ">
+                                Employee Dashboard
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu">
@@ -33,28 +45,35 @@
                     </ul>
                 </li>
 
-                <li class="menu-title">
-                    <span>Employees</span>
-                </li>
+                @if (Auth::user()->isAdmin == 2)
+                    <li class="menu-title">
+                        <span>Employees</span>
+                    </li>
 
+                    <li class="submenu">
+                        <a href="#" class="{{ request()->segment(1)=='users' ? 'active' : ''}} " class="noti-dot">
+                            <i class="la la-user"></i>
+                            <span> Employees</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul style="display: none;">
+                            <li><a  href="{{ route('user.index') }} ">All Employees</a></li>
+                            <li><a href="attendance-employee.html">Attendance (Employee)</a></li>
+                        </ul>
+                    </li>
+                @endif
 
-
-
-                <li class="submenu">
-                    <a href="#" class="{{ request()->segment(1)=='users' ? 'active' : ''}} " class="noti-dot">
-                        <i class="la la-user"></i>
-                        <span> Employees</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul style="display: none;">
-                        <li><a  href="{{ route('user.index') }} ">All Employees</a></li>
-                        <li><a href="attendance-employee.html">Attendance (Employee)</a></li>
-                    </ul>
-                </li>
 
                 <li><a class="{{ request()->segment(1)=='holidays' ? 'active' : ''}} "  href="{{ route('holiday.index') }} "> <i class="la la-user-secret"></i> <span>Holidays</span></a></li>
-
-                <li><a  class="{{ request()->segment(1)=='departments' ? 'active' : ''}} " href="{{ route('department.index')}}"> <i class="la la-user-secret"></i> <span>Departments</span></a></li>
+                @if (Auth::user()->isAdmin == 2)
+                    <li>
+                        <a class="{{ request()->segment(1)=='departments' ? 'active' : ''}}"
+                            href="{{ route('department.index')}}">
+                            <i class="la la-user-secret"></i>
+                            <span>Departments</span>
+                        </a>
+                    </li>
+                @endif
 
 
                 <li class="menu-title">
@@ -115,10 +134,9 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-files-o"></i> <span> Accounting </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="categories.html">Categories</a></li>
-                        <li><a href="budgets.html">Budgets</a></li>
-                        <li><a href="budget-expenses.html">Budget Expenses</a></li>
-                        <li><a href="budget-revenues.html">Budget Revenues</a></li>
+
+                        <li><a class="{{ request()->path()=='accounting/expenses' ? 'active' : ''}} " href="{{ route('expense') }} ">Expenses</a></li>
+                        <li><a class="{{ request()->path()=='accounting/revenues' ? 'active' : ''}} " href="{{ route('revenue') }} ">Revenues</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
@@ -156,8 +174,20 @@
                         <li><a href="{{ route('training-type') }} "> Training Type </a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('promotion.index') }} "><i class="la la-bullhorn"></i> <span>Promotion</span></a></li>
-                <li><a href="{{ route('resignation.index') }} "><i class="la la-external-link-square"></i> <span>Resignation</span></a></li>
+                <li>
+                    <a class="{{ request()->path()=='promotions' ? 'active' : ''}}"
+                        href="{{ route('promotion.index') }} ">
+                            <i class="la la-bullhorn"></i>
+                                <span>Promotion</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ request()->path()=='resignations' ? 'active' : ''}}"
+                        href="{{ route('resignation.index') }} ">
+                            <i class="la la-external-link-square"></i>
+                                <span>Resignation</span>
+                    </a>
+                </li>
 
                 <li class="menu-title">
                     <span>Administration</span>

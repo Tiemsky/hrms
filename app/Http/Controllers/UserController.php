@@ -27,4 +27,8 @@ class UserController extends Controller
     {
         return view('user.profile',compact('slug'));
     }
+
+    public function attendance(){
+        return view('attendance.attendance');
+    }
 }

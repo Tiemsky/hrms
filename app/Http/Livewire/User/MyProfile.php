@@ -327,11 +327,6 @@ class MyProfile extends Component
     }
 
 
-
-
-
-
-
     public function getElementId($model, $id)
     {
         $this->model = $model;
@@ -341,15 +336,14 @@ class MyProfile extends Component
 
     public function delete()
     {
+     if(!$this->model == 'education' || !$this->model == 'experience')
+        {
+            return redirect()->back();
+        }else{
+            if($this->model == 'education'){
 
-     if(!$this->model == 'education' || !$this->model == 'experience'){
-
-         return redirect()->back();
-     }else{
-        if($this->model == 'education'){
-
-            Education::findOrFail($this->itemToBeDeleted)->delete();
-        }
+                Education::findOrFail($this->itemToBeDeleted)->delete();
+            }
         if($this->model == 'experience'){
             Experience::findOrFail($this->itemToBeDeleted )->delete();
         }
